@@ -24,5 +24,10 @@ namespace BarcodeScanner
             base.OnAppearing();
             ((MainPageViewModel)this.BindingContext).LoadBarcodes();
         }
+
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            await Shell.Current.GoToAsync("DetailedPage");
+        }
     }
 }

@@ -15,11 +15,19 @@
             Grid.Row="1"
             Margin ="0,0,0,0">
 
+            <Label Text="Искали ранее:"
+               FontSize="Medium"
+               TextColor="Black"
+               HorizontalOptions="Center"
+               Margin="-150,10,0,10"/>
+
+
             <ListView 
            WidthRequest="500"
            Margin="180,0,0,30"     
            ItemsSource="{Binding Barcodes}"
-           SeparatorColor="YellowGreen">
+           SeparatorColor="YellowGreen"
+                ItemTapped="OnItemTapped">
                 
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -16,5 +16,10 @@
         Title=""
         ContentTemplate="{DataTemplate local:ScanPage}"
         Route="ScanPage" />
+    
+    <ShellContent
+    Title=""
+    ContentTemplate="{DataTemplate local:DetailedPage}"
+    Route="DetailedPage" />
 
 </Shell>
