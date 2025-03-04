@@ -6,6 +6,7 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls">
     
           <Grid>
+              
         <zxing:CameraBarcodeReaderView
 			Grid.Row="0"
             Grid.RowSpan="3"

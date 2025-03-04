@@ -14,12 +14,19 @@
             Grid.Column="0"
             Grid.Row="1"
             Margin ="0,0,0,0">
-            
+
             <ListView 
            WidthRequest="500"
            Margin="180,0,0,30"     
            ItemsSource="{Binding Barcodes}"
-           SeparatorColor="YellowGreen"/>
+           SeparatorColor="YellowGreen">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Barcode}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button 
            BackgroundColor="YellowGreen"
@@ -28,7 +35,6 @@
            HeightRequest="50"          
            Margin="360,0,0,0"
            Clicked="ScanButton_Click"/>
-            
         </StackLayout>
        
 

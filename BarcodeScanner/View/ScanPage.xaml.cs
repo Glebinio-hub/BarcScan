@@ -1,6 +1,10 @@
+using BarcodeScanner.Model;
 using Java.IO;
+using System.Collections.ObjectModel;
 using ZXing;
 using ZXing.Net.Maui.Controls;
+using System.Text.Json;
+using System.ComponentModel;
 
 namespace BarcodeScanner;
 
@@ -28,7 +32,7 @@ public partial class ScanPage : ContentPage
         }
         isScanningEnabled = false;
 
-        List<string> Lines = new List<string>();
+        ObservableCollection<Barcodes> Barcodes = new();
         var FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DetectedBarcodes.txt");
 
         //string FilePath = "C:\\MyProject\\BarcodeScanner\\BarcodeScanner\\Tools\\DetectedBarcodes.txt";
@@ -36,34 +40,39 @@ public partial class ScanPage : ContentPage
 
         using (StreamReader Read = new StreamReader(FilePath))
         {
-            string line;
-
-            while ((line = Read.ReadLine()) != null)
+            while (Read.EndOfStream == false)
             {
-                
-                Lines.Add(line);
+                string Json1 = Read.ReadLine();
+                var Barcode = JsonSerializer.Deserialize<Barcodes>(Json1);
+                Barcodes.Add(Barcode);
             }
+            Read.Close();
         }
 
         using (StreamWriter Writer = new StreamWriter(FilePath))
         {
-            if (Lines.Count <= 10)
+            if (Barcodes.Count< 10)
             {
-                foreach (string line1 in Lines)
+                Barcodes.Add(new Barcodes { Barcode = first.Value});
+                foreach ( var Barcode in Barcodes)
                 {
-                    Writer.WriteLine(line1);
+                    string Json = JsonSerializer.Serialize(Barcode);
+                    Writer.WriteLine(Json);
+                    
                 }
-                Writer.WriteLine(first.Value);
+                //Writer.WriteLine(first.Value);
                 
             }
             else
             {
-                Lines.RemoveAt(Lines.Count - 1);
-                foreach (string line1 in Lines)
+                Barcodes.RemoveAt(Barcodes.Count - 9);
+                Barcodes.Add(new Barcodes { Barcode = first.Value });
+                foreach (var Barcode in Barcodes)
                 {
-                    Writer.WriteLine(line1);
+                    string Json = JsonSerializer.Serialize(Barcode);
+                    Writer.WriteLine(Json);
                 }
-                Writer.WriteLine(first.Value);
+                //Writer.WriteLine(first.Value);
             }
 
             Dispatcher.DispatchAsync(async () =>

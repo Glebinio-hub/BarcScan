@@ -8,5 +8,6 @@ namespace BarcodeScanner.ViewModel
 {
     public class ScanPageViewModel
     {
+
     }
 }
