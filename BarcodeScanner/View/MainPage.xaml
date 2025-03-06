@@ -4,7 +4,7 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="BarcodeScanner.MainPage"
              Background="White">
-             
+
 
     <Grid RowDefinitions="100,Auto,*"
           ColumnDefinitions=".75*,.25*">
@@ -14,6 +14,8 @@
             Grid.Column="0"
             Grid.Row="1"
             Margin ="0,0,0,0">
+
+
 
             <Label Text="Искали ранее:"
                FontSize="Medium"
@@ -28,10 +30,24 @@
            ItemsSource="{Binding Barcodes}"
            SeparatorColor="YellowGreen"
                 ItemTapped="OnItemTapped">
-                
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Barcode}" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Label Text="{Binding Barcode}" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start" 
+                           Margin="5,0,10,0"
+                           TextColor="Black"/>
+                                <Image Source="lotus1.png" 
+                           WidthRequest="40" 
+                           HeightRequest="40" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="End"
+                            Margin="0"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -39,12 +55,15 @@
             <Button 
            BackgroundColor="YellowGreen"
            Text="Cканировать"
-           WidthRequest="130"
-           HeightRequest="50"          
-           Margin="360,0,0,0"
-           Clicked="ScanButton_Click"/>
+           WidthRequest="190"
+           HeightRequest="60"
+           HorizontalOptions="Center"
+           Margin="101,0,0,0"
+           Clicked="ScanButton_Click"
+           FontSize="Body"
+/>
         </StackLayout>
-       
+
 
 
 
