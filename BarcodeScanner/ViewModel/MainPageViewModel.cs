@@ -13,7 +13,23 @@ namespace BarcodeScanner.ViewModel
 {
     public class MainPageViewModel:INotifyPropertyChanged
     {
+        
         private ObservableCollection<Barcodes> barcodes;
+        private Barcodes selectedItem;
+        public static ObservableCollection<Barcodes> SelectedItems { get; set; }
+        public Barcodes SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged(nameof(Barcodes));
+                    UpdateSelectedItems();
+                }
+            }
+        }
         public ObservableCollection<Barcodes> Barcodes
         {
             get => barcodes;
@@ -26,6 +42,7 @@ namespace BarcodeScanner.ViewModel
         public MainPageViewModel()
         {
             Barcodes = new ObservableCollection<Barcodes>();
+            SelectedItems = new ObservableCollection<Barcodes>();
             LoadBarcodes();
         }
 
@@ -35,12 +52,7 @@ namespace BarcodeScanner.ViewModel
 
             using (StreamReader Read = new StreamReader(FilePath))
             {
-                //string line;
                 Barcodes.Clear();
-                //while ((line = Read.ReadLine()) != null)
-                //{
-                //    Barcodes.Add(new Barcodes { Barcode = line });
-                //}
                 while (Read.EndOfStream == false)
                 {
 
@@ -54,7 +66,16 @@ namespace BarcodeScanner.ViewModel
             }
         }
 
+        public void UpdateSelectedItems()
+        {
+            if (selectedItem != null && !SelectedItems.Contains(selectedItem))
+            {
+                SelectedItems.Add(selectedItem);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

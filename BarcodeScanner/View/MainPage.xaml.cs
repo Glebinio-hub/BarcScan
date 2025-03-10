@@ -3,31 +3,31 @@ using ZXing.Net.Maui.Controls;
 using System.Windows;
 using BarcodeScanner.ViewModel;
 
-namespace BarcodeScanner
+namespace BarcodeScanner;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public List<string> Barcodes { get; set; }
+
+    public MainPage()
     {
-        public List<string> Barcodes { get; set; }
+        InitializeComponent();
+        BindingContext = new MainPageViewModel();
+    }
 
-        public MainPage()
-        {
-            InitializeComponent();
-            BindingContext = new MainPageViewModel();
-        }
+    private async void ScanButton_Click(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ScanPage");
+    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ((MainPageViewModel)this.BindingContext).LoadBarcodes();
+    }
 
-        private async void ScanButton_Click(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("ScanPage");
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ((MainPageViewModel)this.BindingContext).LoadBarcodes();
-        }
-
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            await Shell.Current.GoToAsync("DetailedPage");
-        }
+    private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("DetailedPage");
     }
 }
+

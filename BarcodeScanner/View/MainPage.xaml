@@ -5,67 +5,59 @@
              x:Class="BarcodeScanner.MainPage"
              Background="White">
 
-
     <Grid RowDefinitions="100,Auto,*"
           ColumnDefinitions=".75*,.25*">
+
         <Image Grid.ColumnSpan="2"
                Source="lotus1.png"/>
-        <StackLayout 
-            Grid.Column="0"
-            Grid.Row="1"
-            Margin ="0,0,0,0">
-
-
+        <StackLayout  Grid.Column="0"
+                      Grid.Row="1"
+                      Margin ="0,0,0,0">
 
             <Label Text="Искали ранее:"
-               FontSize="Medium"
-               TextColor="Black"
-               HorizontalOptions="Center"
-               Margin="-150,10,0,10"/>
+                   FontSize="Medium"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   Margin="-150,10,0,10"/>
 
-
-            <ListView 
-           WidthRequest="500"
-           Margin="180,0,0,30"     
-           ItemsSource="{Binding Barcodes}"
-           SeparatorColor="YellowGreen"
-                ItemTapped="OnItemTapped">
+            <ListView WidthRequest="500"
+                      Margin="180,0,0,30"     
+                      ItemsSource="{Binding Barcodes}"
+                      SeparatorColor="YellowGreen"
+                      ItemTapped="OnItemTapped"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                <Label Text="{Binding Barcode}" 
-                           VerticalOptions="Center" 
-                           HorizontalOptions="Start" 
-                           Margin="5,0,10,0"
-                           TextColor="Black"/>
-                                <Image Source="lotus1.png" 
-                           WidthRequest="40" 
-                           HeightRequest="40" 
-                           VerticalOptions="Center" 
-                           HorizontalOptions="End"
-                            Margin="0"/>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="10">
+                                <Label Text="{Binding Barcode}"
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Start" 
+                                       Margin="5,0,10,0"
+                                       TextColor="Black"/>
+                                <Image Source="lotus1.png"   
+                                       WidthRequest="40" 
+                                       HeightRequest="40" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="End"
+                                       Margin="0"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button 
-           BackgroundColor="YellowGreen"
-           Text="Cканировать"
-           WidthRequest="190"
-           HeightRequest="60"
-           HorizontalOptions="Center"
-           Margin="101,0,0,0"
-           Clicked="ScanButton_Click"
-           FontSize="Body"
-/>
+            <Button BackgroundColor="YellowGreen"
+                    Text="Сканировать"
+                    WidthRequest="190"
+                    HeightRequest="60"
+                    HorizontalOptions="Center"
+                    Margin="101,0,0,0"
+                    Clicked="ScanButton_Click"
+                    FontSize="Body"/>
         </StackLayout>
-
-
-
-
     </Grid>
 </ContentPage>

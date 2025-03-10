@@ -4,43 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BarcodeScanner.Model
+namespace BarcodeScanner.Model;
+
+public class Barcodes
 {
-    public class Barcodes
+    private string barcode;
+
+    public string Barcode
     {
-		private string barcode;
+        get { return barcode; }
+        set { barcode = value; }
+    }
 
-		public string Barcode
-		{
-			get { return barcode; }
-			set { barcode = value; }
-		}
+    private int articul;
 
-		private int articul;
+    public int Articul
+    {
+        get { return articul; }
+        set { articul = value; }
+    }
 
-		public int Articul
-		{
-			get { return articul; }
-			set { articul = value; }
-		}
+    private string image;
 
-		private string image;
-
-		public string Image
-		{
-			get { return image; }
-			set { image = value; }
-		}
+    public string Image
+    {
+        get { return image; }
+        set { image = value; }
+    }
 
 
-		private string description;
+    private string description;
 
-		public string Description
-		{
-			get { return description; }
-			set { description = value; }
-		}
-
-
-	}
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
+    }
 }
