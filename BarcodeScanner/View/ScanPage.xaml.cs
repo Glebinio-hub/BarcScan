@@ -10,6 +10,7 @@ namespace BarcodeScanner;
 public partial class ScanPage : ContentPage
 {
     private bool isScanningEnabled = true;
+    string Directory = FileSystem.AppDataDirectory;
 
     public ScanPage()
     {
@@ -36,7 +37,13 @@ public partial class ScanPage : ContentPage
         isScanningEnabled = false;
 
         ObservableCollection<Barcodes> Barcodes = new();
-        var FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DetectedBarcodes.txt");
+
+        var FilePath = Path.Combine(Directory, "DetectedBarcodes.txt");
+
+        if (!File.Exists(FilePath))
+        {
+            using (StreamWriter Write = new(FilePath)); 
+        }
 
         using (StreamReader Read = new StreamReader(FilePath))
         {

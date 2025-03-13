@@ -20,6 +20,7 @@ public class DetailedPageViewModel : INotifyPropertyChanged
         
         foreach (var item in MainPageViewModel.SelectedItems)
         {
+           SelectedItem.Clear(); 
            SelectedItem.Add(item);
 
         }
