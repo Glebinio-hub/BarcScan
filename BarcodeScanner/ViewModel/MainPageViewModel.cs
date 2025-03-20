@@ -9,12 +9,25 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace BarcodeScanner.ViewModel
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
 
+        private RelayCommand loadInfoCommand;
+        public RelayCommand LoadInfoCommand
+        {
+            get
+            {
+                return loadInfoCommand ??
+                  (loadInfoCommand = new RelayCommand(obj =>
+                  {
+                      LoadBarcodes();
+                  }));
+            }
+        }
         private ObservableCollection<Barcodes> barcodes;
         private Barcodes selectedItem;
         static string Directory = FileSystem.AppDataDirectory;
@@ -49,6 +62,7 @@ namespace BarcodeScanner.ViewModel
             LoadBarcodes();
         }
 
+
         public void LoadBarcodes()
         {
             if (!File.Exists(FilePath))
@@ -66,8 +80,6 @@ namespace BarcodeScanner.ViewModel
                     Barcodes.Add(Barcode);
 
                 }
-
-
             }
         }
 

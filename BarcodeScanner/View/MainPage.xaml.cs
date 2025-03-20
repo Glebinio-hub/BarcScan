@@ -7,7 +7,7 @@ namespace BarcodeScanner;
 
 public partial class MainPage : ContentPage
 {
-    public List<string> Barcodes { get; set; }
+    //public List<string> Barcodes { get; set; }
 
     public MainPage()
     {
@@ -22,7 +22,8 @@ public partial class MainPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        ((MainPageViewModel)this.BindingContext).LoadBarcodes();
+        var VM = BindingContext as MainPageViewModel;
+        VM.LoadInfoCommand.Execute(null);
     }
 
     private async void OnItemTapped(object sender, ItemTappedEventArgs e)
