@@ -4,6 +4,7 @@ using ZXing;
 using ZXing.Net.Maui.Controls;
 using System.Text.Json;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace BarcodeScanner;
 
@@ -36,13 +37,13 @@ public partial class ScanPage : ContentPage
 
         isScanningEnabled = false;
 
-        ObservableCollection<Barcodes> Barcodes = new();
+        ObservableCollection<Plants> CollectionOfPlants = new();
 
         var FilePath = Path.Combine(Directory, "DetectedBarcodes.txt");
 
         if (!File.Exists(FilePath))
         {
-            using (StreamWriter Write = new(FilePath)); 
+            using (StreamWriter Write = new(FilePath));
         }
 
         using (StreamReader Read = new StreamReader(FilePath))
@@ -51,8 +52,8 @@ public partial class ScanPage : ContentPage
             while (Read.EndOfStream == false)
             {
                 string Json1 = Read.ReadLine();
-                var Barcode = JsonSerializer.Deserialize<Barcodes>(Json1);
-                Barcodes.Add(Barcode);
+                var Plant = JsonSerializer.Deserialize<Plants>(Json1);
+                CollectionOfPlants.Add(Plant);
             }
 
         }
@@ -60,24 +61,24 @@ public partial class ScanPage : ContentPage
         using (StreamWriter Writer = new StreamWriter(FilePath))
         {
 
-            if (Barcodes.Count< 10)
+            if (CollectionOfPlants.Count < 10)
             {
-                Barcodes.Add(new Barcodes { Barcode = first.Value});
-                foreach ( var Barcode in Barcodes)
+                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910401, Description = "Это красивое расстение", Image = "rose.jpg", Name="Роза", RetailPrice=250, WholesalePrice=200});
+                foreach (var Plant in CollectionOfPlants)
                 {
-                    string Json = JsonSerializer.Serialize(Barcode);
+                    string Json = JsonSerializer.Serialize(Plant);
                     Writer.WriteLine(Json);
-                    
-                }           
+
+                }
             }
 
             else
             {
-                Barcodes.RemoveAt(Barcodes.Count - 9);
-                Barcodes.Add(new Barcodes { Barcode = first.Value });
-                foreach (var Barcode in Barcodes)
+                CollectionOfPlants.RemoveAt(CollectionOfPlants.Count - 9);
+                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910401, Description = "Это красивое расстение", Image = ("rose.jpg"), Name = "Роза", RetailPrice = 250, WholesalePrice = 200 });
+                foreach (var Plant in CollectionOfPlants)
                 {
-                    string Json = JsonSerializer.Serialize(Barcode);
+                    string Json = JsonSerializer.Serialize(Plant);
                     Writer.WriteLine(Json);
                 }
             }
@@ -89,5 +90,6 @@ public partial class ScanPage : ContentPage
             });
         }
     }
-}
+
+    }
         

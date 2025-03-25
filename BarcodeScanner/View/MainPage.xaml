@@ -22,7 +22,7 @@
 
             <ListView WidthRequest="500"
                       Margin="180,0,0,30"     
-                      ItemsSource="{Binding Barcodes}"
+                      ItemsSource="{Binding CollectionOfPlants}"
                       SeparatorColor="YellowGreen"
                       ItemTapped="OnItemTapped"
                       SelectionMode="Single"
@@ -33,7 +33,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
                                          Padding="10">
-                                <Label Text="{Binding Barcode}"
+                                <Label Text="{Binding Name}"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" 
                                        Margin="5,0,10,0"

@@ -28,12 +28,12 @@ namespace BarcodeScanner.ViewModel
                   }));
             }
         }
-        private ObservableCollection<Barcodes> barcodes;
-        private Barcodes selectedItem;
+        private ObservableCollection<Plants> collectionOfPlants;
+        private Plants selectedItem;
         static string Directory = FileSystem.AppDataDirectory;
         string FilePath = Path.Combine(Directory, "DetectedBarcodes.txt");
-        public static ObservableCollection<Barcodes> SelectedItems { get; set; }
-        public Barcodes SelectedItem
+        public static ObservableCollection<Plants> SelectedItems { get; set; }
+        public Plants SelectedItem
         {
             get => selectedItem;
             set
@@ -41,24 +41,24 @@ namespace BarcodeScanner.ViewModel
                 if (selectedItem != value)
                 {
                     selectedItem = value;
-                    OnPropertyChanged(nameof(Barcodes));
+                    OnPropertyChanged(nameof(Plants));
                     UpdateSelectedItems();
                 }
             }
         }
-        public ObservableCollection<Barcodes> Barcodes
+        public ObservableCollection<Plants> CollectionOfPlants
         {
-            get => barcodes;
+            get => collectionOfPlants;
             set
             {
-                barcodes = value;
-                OnPropertyChanged(nameof(Barcodes));
+                collectionOfPlants = value;
+                OnPropertyChanged(nameof(Plants));
             }
         }
         public MainPageViewModel()
         {
-            Barcodes = new ObservableCollection<Barcodes>();
-            SelectedItems = new ObservableCollection<Barcodes>();
+            CollectionOfPlants = new ObservableCollection<Plants>();
+            SelectedItems = new ObservableCollection<Plants>();
             LoadBarcodes();
         }
 
@@ -70,14 +70,19 @@ namespace BarcodeScanner.ViewModel
                 using (StreamWriter Write = new(FilePath)) ;
             }
 
+            //using (StreamWriter Write = new(FilePath))
+            //{
+            //    Write.Write("");
+            //}
+
             using (StreamReader Read = new StreamReader(FilePath))
             {
-                Barcodes.Clear();
+                CollectionOfPlants.Clear();
                 while (Read.EndOfStream == false)
                 {
                     string Json1 = Read.ReadLine();
-                    var Barcode = JsonSerializer.Deserialize<Barcodes>(Json1);
-                    Barcodes.Add(Barcode);
+                    var Plant = JsonSerializer.Deserialize<Plants>(Json1);
+                    CollectionOfPlants.Add(Plant);
 
                 }
             }

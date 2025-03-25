@@ -6,24 +6,51 @@
              Title="DetailedPage"
              Background="White">
     <VerticalStackLayout>
-        
-        <Image Source="lotus1"
+
+        <Image Source="{Binding SelectedItem.Image}"
+               HeightRequest="200"
                HorizontalOptions="Center"/>
-        
+
         <ListView ItemsSource="{Binding SelectedItem}"
-                  WidthRequest="500"
-                  Margin="0,0,0,0"
-                  SeparatorColor="YellowGreen"
-                  HorizontalOptions="Start">
-            
+                  Margin="0" 
+                  SeparatorColor="YellowGreen" 
+                  HorizontalOptions="FillAndExpand" 
+                  VerticalOptions="FillAndExpand" 
+                  BackgroundColor="Black"
+                  HasUnevenRows="True">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Barcode}"
-                              TextColor="Black"/>
+                    <ViewCell>
+                        <Grid Padding="10" HeightRequest="500" BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Margin="5" Text="Название:" FontAttributes="Italic" TextColor="Black" Grid.Row="0" />
+                            <BoxView HeightRequest="1" Margin="0,25,0,0" Color="YellowGreen" Grid.Row="1"/>
+                            <Label Margin="0" Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" Grid.Row="1" />
+                            <Label Margin="5" Text="Описание:" FontAttributes="Italic" TextColor="Black" Grid.Row="2" />
+                            <BoxView HeightRequest="1" Margin="0,25,0,0" Color="YellowGreen" Grid.Row="3"/>
+                            <Label Margin="0" Text="{Binding Description}" TextColor="Black" FontAttributes="Bold" Grid.Row="3" />
+                            <Label Margin="5" Text="Розничная цена:" FontAttributes="Italic" TextColor="Black" Grid.Row="4"/>
+                            <BoxView HeightRequest="1" Margin="0,25,0,0" Color="YellowGreen" Grid.Row="5"/>
+                            <Label Margin="0" Text="{Binding RetailPrice}" TextColor="Black" FontAttributes="Bold" Grid.Row="5"/>
+                            <Label Margin="5" Text="Оптовая цена:" FontAttributes="Italic" TextColor="Black" Grid.Row="6"/>
+                            <BoxView HeightRequest="1" Margin="0,25,0,0" Color="YellowGreen" Grid.Row="7"/>
+                            <Label Margin="0" Text="{Binding WholesalePrice}" TextColor="Black" FontAttributes="Bold" Grid.Row="7"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
-        
     </VerticalStackLayout>
 </ContentPage>
