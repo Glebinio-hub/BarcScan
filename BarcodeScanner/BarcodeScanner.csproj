@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>BarcodeScanner</ApplicationTitle>
+		<ApplicationTitle>Flora Lotus</ApplicationTitle>
  
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.barcodescanner</ApplicationId>
@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\lotusicon.svg"/>
 
 		<!-- Splash Screen -->
 
