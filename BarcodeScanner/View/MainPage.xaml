@@ -20,6 +20,16 @@
                    HorizontalOptions="Center"
                    Margin="-150,10,0,10"/>
 
+            <Label x:Name="NothingLabel"
+                   Text="Тут пока ничего нет"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   Margin="105,20,0,0"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   IsVisible="{Binding IsLabelVisible}"/>
+
             <ListView WidthRequest="500"
                       Margin="180,0,0,30"     
                       ItemsSource="{Binding CollectionOfPlants}"
@@ -30,21 +40,29 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal"
-                                         Padding="10">
+                        <ViewCell >
+                            <Grid Padding="15,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
                                 <Label Text="{Binding Name}"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" 
                                        Margin="5,0,10,0"
-                                       TextColor="Black"/>
-                                <Image Source="lotus1.png"   
-                                       WidthRequest="40" 
-                                       HeightRequest="40" 
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       Grid.Column="0"/>
+
+                                <Image Source="{Binding Image}"   
+                                       WidthRequest="55" 
+                                       HeightRequest="55" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="End"
-                                       Margin="0"/>
-                            </StackLayout>
+                                       HorizontalOptions="Start"
+                                       Margin="0,0,0,0"
+                                       Grid.Column="1"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

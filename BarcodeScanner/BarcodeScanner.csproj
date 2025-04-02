@@ -60,7 +60,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\lotus.png" />
+	  <MauiSplashScreen Include="Resources\Splash\lotus1.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Splash\lotus.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,5 +85,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+	
+	
 
 </Project>

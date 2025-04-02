@@ -1,5 +1,4 @@
-﻿using Android.App.Usage;
-using BarcodeScanner.Model;
+﻿using BarcodeScanner.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,6 +27,19 @@ namespace BarcodeScanner.ViewModel
                   }));
             }
         }
+        private bool isLabelVisible;
+
+        public bool IsLabelVisible
+        {
+            get => isLabelVisible;
+            set
+            {
+                isLabelVisible = value;
+                OnPropertyChanged(nameof(IsLabelVisible));
+            }
+        }
+
+
         private ObservableCollection<Plants> collectionOfPlants;
         private Plants selectedItem;
         static string Directory = FileSystem.AppDataDirectory;
@@ -77,13 +89,14 @@ namespace BarcodeScanner.ViewModel
 
             using (StreamReader Read = new StreamReader(FilePath))
             {
+                IsLabelVisible = true;
                 CollectionOfPlants.Clear();
                 while (Read.EndOfStream == false)
                 {
+                    IsLabelVisible = false;
                     string Json1 = Read.ReadLine();
                     var Plant = JsonSerializer.Deserialize<Plants>(Json1);
                     CollectionOfPlants.Add(Plant);
-
                 }
             }
         }

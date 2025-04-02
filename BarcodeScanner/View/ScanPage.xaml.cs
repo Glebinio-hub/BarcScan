@@ -63,7 +63,7 @@ public partial class ScanPage : ContentPage
 
             if (CollectionOfPlants.Count < 10)
             {
-                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910401, Description = "Это красивое расстение", Image = "rose.jpg", Name="Роза", RetailPrice=250, WholesalePrice=200});
+                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910404, Description = "Это популярное растение", Image = "tulp.jpg", Name="Тюльпан", RetailPrice=80, WholesalePrice=75});
                 foreach (var Plant in CollectionOfPlants)
                 {
                     string Json = JsonSerializer.Serialize(Plant);
@@ -75,7 +75,7 @@ public partial class ScanPage : ContentPage
             else
             {
                 CollectionOfPlants.RemoveAt(CollectionOfPlants.Count - 9);
-                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910401, Description = "Это красивое расстение", Image = ("rose.jpg"), Name = "Роза", RetailPrice = 250, WholesalePrice = 200 });
+                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910402, Description = "Это  расстение", Image = ("rose.jpg"), Name = "Роза", RetailPrice = 250, WholesalePrice = 200 });
                 foreach (var Plant in CollectionOfPlants)
                 {
                     string Json = JsonSerializer.Serialize(Plant);
