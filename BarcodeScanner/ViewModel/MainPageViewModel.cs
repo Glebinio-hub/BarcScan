@@ -79,7 +79,7 @@ namespace BarcodeScanner.ViewModel
         {
             if (!File.Exists(FilePath))
             {
-                using (StreamWriter Write = new(FilePath)) ;
+                using (StreamWriter Write = new(FilePath));
             }
 
             //using (StreamWriter Write = new(FilePath))

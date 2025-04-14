@@ -28,7 +28,14 @@ public partial class MainPage : ContentPage
 
     private async void OnItemTapped(object sender, ItemTappedEventArgs e)
     {
-        await Shell.Current.GoToAsync("DetailedPage");
+        var DetailedPage = new DetailedPage();
+        DetailedPage.TranslationX = Application.Current.MainPage.Width;
+        await Navigation.PushAsync(DetailedPage);
+        await Task.WhenAll(
+            this.TranslateTo(-Application.Current.MainPage.Width, 0, 500),
+            DetailedPage.TranslateTo(0, 0, 500)
+            );
+        this.TranslationX = 0;
     }
 }
 

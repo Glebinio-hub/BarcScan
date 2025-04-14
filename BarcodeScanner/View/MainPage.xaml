@@ -4,6 +4,20 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="BarcodeScanner.MainPage"
              Background="White">
+    <ContentPage.Resources>
+        <Style TargetType="ViewCell">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Style.Triggers>
+                <Trigger TargetType="ViewCell" Property="IsSelected" Value="True">
+                    <Setter Property="BackgroundColor" Value="Orange"/>
+                    <!-- Цвет фона выделенного элемента -->
+                    <Setter Property="TextColor" Value="White"/>
+                    <!-- Цвет текста выделенного элемента -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="100,Auto,*"
           ColumnDefinitions=".75*,.25*">
