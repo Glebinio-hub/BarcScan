@@ -2,6 +2,7 @@
 using ZXing.Net.Maui.Controls;
 using System.Windows;
 using BarcodeScanner.ViewModel;
+using BarcodeScanner.Model;
 
 namespace BarcodeScanner;
 
@@ -36,6 +37,5 @@ public partial class MainPage : ContentPage
             DetailedPage.TranslateTo(0, 0, 500)
             );
         this.TranslationX = 0;
-    }
 }
-
+}
