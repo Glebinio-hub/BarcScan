@@ -39,12 +39,12 @@ namespace BarcodeScanner.ViewModel
             }
         }
 
-
+        public static ObservableCollection<Plants> SelectedItems { get; set; }
         private ObservableCollection<Plants> collectionOfPlants;
         private Plants selectedItem;
         static string Directory = FileSystem.AppDataDirectory;
         string FilePath = Path.Combine(Directory, "DetectedBarcodes.txt");
-        public static ObservableCollection<Plants> SelectedItems { get; set; }
+
         public Plants SelectedItem
         {
             get => selectedItem;
@@ -58,6 +58,7 @@ namespace BarcodeScanner.ViewModel
                 }
             }
         }
+
         public ObservableCollection<Plants> CollectionOfPlants
         {
             get => collectionOfPlants;
@@ -67,6 +68,7 @@ namespace BarcodeScanner.ViewModel
                 OnPropertyChanged(nameof(Plants));
             }
         }
+
         public MainPageViewModel()
         {
             CollectionOfPlants = new ObservableCollection<Plants>();
@@ -74,18 +76,12 @@ namespace BarcodeScanner.ViewModel
             LoadBarcodes();
         }
 
-
         public void LoadBarcodes()
         {
             if (!File.Exists(FilePath))
             {
-                using (StreamWriter Write = new(FilePath));
+                using (StreamWriter Write = new(FilePath)) ;
             }
-
-            //using (StreamWriter Write = new(FilePath))
-            //{
-            //    Write.Write("");
-            //}
 
             using (StreamReader Read = new StreamReader(FilePath))
             {

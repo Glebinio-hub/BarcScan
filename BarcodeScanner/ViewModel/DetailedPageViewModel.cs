@@ -12,16 +12,16 @@ namespace BarcodeScanner.ViewModel;
 
 public class DetailedPageViewModel : INotifyPropertyChanged
 {
-   public ObservableCollection<Plants> SelectedItem { get; set; }
+    public ObservableCollection<Plants> SelectedItem { get; set; }
 
     public DetailedPageViewModel()
     {
         SelectedItem = new();
-        
+
         foreach (var item in MainPageViewModel.SelectedItems)
         {
-           SelectedItem.Clear(); 
-           SelectedItem.Add(item);
+            SelectedItem.Clear();
+            SelectedItem.Add(item);
 
         }
     }

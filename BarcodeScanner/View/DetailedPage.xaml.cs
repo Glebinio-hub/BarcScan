@@ -8,6 +8,5 @@ public partial class DetailedPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new DetailedPageViewModel();
-
     }
 }

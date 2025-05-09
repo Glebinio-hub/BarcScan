@@ -43,39 +43,54 @@ public partial class ScanPage : ContentPage
 
         if (!File.Exists(FilePath))
         {
-            using (StreamWriter Write = new(FilePath));
+            using (StreamWriter Write = new(FilePath)) ;
         }
 
         using (StreamReader Read = new StreamReader(FilePath))
         {
-
             while (Read.EndOfStream == false)
             {
                 string Json1 = Read.ReadLine();
                 var Plant = JsonSerializer.Deserialize<Plants>(Json1);
                 CollectionOfPlants.Add(Plant);
             }
-
         }
 
         using (StreamWriter Writer = new StreamWriter(FilePath))
         {
-
             if (CollectionOfPlants.Count < 10)
             {
-                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910404, Description = "Это популярное растение", Image = "tulp.jpg", Name="Тюльпан", RetailPrice=80, WholesalePrice=75});
+                CollectionOfPlants.Add(new Plants
+                {
+                    Barcode = first.Value,
+                    Articul = 128910404,
+                    Description = "Это популярное растение",
+                    Image = "tulp.jpg",
+                    Name = "Тюльпан",
+                    RetailPrice = 80,
+                    WholesalePrice = 75
+                });
+
                 foreach (var Plant in CollectionOfPlants)
                 {
                     string Json = JsonSerializer.Serialize(Plant);
                     Writer.WriteLine(Json);
-
                 }
             }
-
             else
             {
                 CollectionOfPlants.RemoveAt(CollectionOfPlants.Count - 9);
-                CollectionOfPlants.Add(new Plants { Barcode = first.Value, Articul = 128910402, Description = "Это  расстение", Image = ("rose.jpg"), Name = "Роза", RetailPrice = 250, WholesalePrice = 200 });
+                CollectionOfPlants.Add(new Plants
+                {
+                    Barcode = first.Value,
+                    Articul = 128910402,
+                    Description = "Это расстение",
+                    Image = "rose.jpg",
+                    Name = "Роза",
+                    RetailPrice = 250,
+                    WholesalePrice = 200
+                });
+
                 foreach (var Plant in CollectionOfPlants)
                 {
                     string Json = JsonSerializer.Serialize(Plant);
@@ -90,6 +105,4 @@ public partial class ScanPage : ContentPage
             });
         }
     }
-
-    }
-        
+}

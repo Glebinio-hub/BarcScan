@@ -12,7 +12,7 @@ namespace BarcodeScanner
 
             builder
                 .UseMauiApp<App>()
-                .UseBarcodeReader(); // This line initializes the barcode reader plugin
+                .UseBarcodeReader();
 
             return builder.Build();
         }

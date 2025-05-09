@@ -8,8 +8,6 @@ namespace BarcodeScanner;
 
 public partial class MainPage : ContentPage
 {
-    //public List<string> Barcodes { get; set; }
-
     public MainPage()
     {
         InitializeComponent();
@@ -20,6 +18,7 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("ScanPage");
     }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -37,5 +36,5 @@ public partial class MainPage : ContentPage
             DetailedPage.TranslateTo(0, 0, 500)
             );
         this.TranslationX = 0;
-}
+    }
 }

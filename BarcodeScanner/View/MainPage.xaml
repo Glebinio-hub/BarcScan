@@ -10,9 +10,10 @@
 
         <Image Grid.ColumnSpan="2"
                Source="lotus1.png"/>
-        <StackLayout  Grid.Column="0"
-                      Grid.Row="1"
-                      Margin ="0,0,0,0">
+
+        <StackLayout Grid.Column="0"
+                     Grid.Row="1"
+                     Margin="0,0,0,0">
 
             <Label Text="Искали ранее:"
                    FontSize="Medium"
@@ -45,40 +46,37 @@
                         <ViewCell>
                             <Grid Padding="15,0">
                                 <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroupList>
-                                    <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor"
-                                                        Value="White"/>
+                                                            Value="White"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
-                                </VisualStateGroupList>
+                                    </VisualStateGroupList>
                                 </VisualStateManager.VisualStateGroups>
-                                
+
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="150"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Label Text="{Binding Name}"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" 
                                        Margin="5,0,10,0"
                                        TextColor="Black"
                                        FontAttributes="Bold"
-                                       Grid.Column="0">
-                                </Label>
-
+                                       Grid.Column="0"/>
                                 <Image Source="{Binding Image}"   
                                        WidthRequest="55" 
                                        HeightRequest="55" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start"
                                        Margin="0,0,0,0"
-                                       Grid.Column="1">
-                                </Image>
+                                       Grid.Column="1"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
